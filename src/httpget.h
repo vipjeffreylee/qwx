@@ -1,19 +1,19 @@
 // Copyright (C) 2014 Leslie Zhai <xiang.zhai@i-soft.com.cn>
 
-#ifndef HTTPS_GET_H
-#define HTTPS_GET_H
+#ifndef HTTP_GET_H
+#define HTTP_GET_H
 
 #include <QObject>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
 
-class HttpsGet : public QObject 
+class HttpGet : public QObject 
 {
     Q_OBJECT
 
 public:
-    HttpsGet(QObject* parent = nullptr);
-    virtual ~HttpsGet();
+    HttpGet(QObject* parent = nullptr);
+    virtual ~HttpGet();
 
 public:
     void get(QString url);
@@ -29,4 +29,4 @@ private:
     QNetworkAccessManager m_nam;
 };
 
-#endif // HTTPS_GET_H
+#endif // HTTP_GET_H

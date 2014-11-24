@@ -4,10 +4,10 @@ QT_VER_MAJ = $$member(QT_VERSION, 0)
 QT_VER_MIN = $$member(QT_VERSION, 1)
 
 lessThan(QT_VER_MAJ, 5) | lessThan(QT_VER_MIN, 2) | {
-	error(QJade is only tested under Qt 5.2!)
+	error(qwx is only tested under Qt 5.2!)
 }
 
-QT += qml quick network
+QT += qml quick network xml
 QMAKE_CXXFLAGS += -std=c++11 -Werror
 !android: !ios: !blackberry: qtHaveModule(widgets): QT += widgets
 TARGET = qwx

@@ -3,14 +3,14 @@
 #ifndef CONTACT_H
 #define CONTACT_H
 
-#include "httpsget.h"
+#include "httpget.h"
 
-class Contact : public HttpsGet 
+class Contact : public HttpGet 
 {
     Q_OBJECT
 
 public:
-    Contact(HttpsGet* parent = nullptr);
+    Contact(HttpGet* parent = nullptr);
     ~Contact();
 
     Q_INVOKABLE void get();

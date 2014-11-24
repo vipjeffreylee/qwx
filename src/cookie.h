@@ -3,17 +3,20 @@
 #ifndef COOKIE_H
 #define COOKIE_H
 
-#include "httpsget.h"
+#include "httpget.h"
 
-class Cookie : public HttpsGet 
+class Cookie : public HttpGet 
 {
     Q_OBJECT
 
 public:
-    Cookie(HttpsGet* parent = nullptr);
+    Cookie(HttpGet* parent = nullptr);
     ~Cookie();
 
     Q_INVOKABLE void get(QString redirect_uri);
+
+Q_SIGNALS:
+    void infoChanged(QString skey, QString sid, QString uin, QString ticket);
 
 protected:
     void finished(QNetworkReply* reply);

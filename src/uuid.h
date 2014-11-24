@@ -3,14 +3,14 @@
 #ifndef UUID_H
 #define UUID_H
 
-#include "httpsget.h"
+#include "httpget.h"
 
-class UUID : public HttpsGet 
+class UUID : public HttpGet 
 {
     Q_OBJECT
 
 public:
-    UUID(HttpsGet* parent = nullptr);
+    UUID(HttpGet* parent = nullptr);
     ~UUID();
 
     Q_INVOKABLE void get();

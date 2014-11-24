@@ -3,8 +3,8 @@
 #include "uuid.h"
 #include "globaldeclarations.h"
 
-UUID::UUID(HttpsGet* parent) 
-  : HttpsGet(parent)
+UUID::UUID(HttpGet* parent) 
+  : HttpGet(parent)
 {
     //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
     get();
@@ -21,7 +21,7 @@ void UUID::get()
         "wx782c26e4c19acffb&redirect_uri=https://wx.qq.com/cgi-bin/mmwebwx-bin"    
         "/webwxnewloginpage&fun=new&lang=zh_CN&_=" + QString::number(time(NULL));
     //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << url;
-    HttpsGet::get(url);
+    HttpGet::get(url);
 }
 
 void UUID::finished(QNetworkReply* reply) 

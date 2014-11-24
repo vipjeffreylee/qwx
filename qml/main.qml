@@ -15,7 +15,6 @@ ApplicationWindow {
         id: uuidObj
         onUuidChanged: {
             loginWindow.uuid = uuid
-            console.log("DEBUG:", uuid)
             qrcodeImage.source = "https://login.weixin.qq.com/qrcode/" + uuid + 
             "?t=webwx"
             scanQRcode()
@@ -39,7 +38,7 @@ ApplicationWindow {
             console.log("DEBUG: confirmed")
             scanTimer.stop()
             cookieObj.get(redirect_uri)
-            contactObj.get()
+            secReqObj.post(loginWindow.uuid)
         }
     }
 
@@ -53,6 +52,22 @@ ApplicationWindow {
 
     Cookie {
         id: cookieObj
+        onInfoChanged: {
+            initObj.post(uin, sid, skey)
+            plistObj.post(uin, sid)
+        }
+    }
+
+    SecReq {
+        id: secReqObj
+    }
+
+    Init {
+        id: initObj
+    }
+
+    Plist {
+        id: plistObj
     }
 
     Contact {

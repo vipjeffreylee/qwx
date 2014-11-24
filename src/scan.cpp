@@ -2,8 +2,8 @@
 
 #include "scan.h"
 
-Scan::Scan(HttpsGet* parent) 
-  : HttpsGet(parent)
+Scan::Scan(HttpGet* parent) 
+  : HttpGet(parent)
 {
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
 }
@@ -18,7 +18,7 @@ void Scan::get(QString uuid)
     QString url = "https://login.weixin.qq.com/cgi-bin/mmwebwx-bin/login?uuid=" 
         + uuid + "&tip=0&_=" + QString::number(time(NULL));
     //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << url;
-    HttpsGet::get(url);
+    HttpGet::get(url);
 }
 
 void Scan::finished(QNetworkReply* reply) 

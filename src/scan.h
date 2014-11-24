@@ -3,14 +3,14 @@
 #ifndef SCAN_H
 #define SCAN_H
 
-#include "httpsget.h"
+#include "httpget.h"
 
-class Scan : public HttpsGet 
+class Scan : public HttpGet 
 {
     Q_OBJECT
 
 public:
-    Scan(HttpsGet* parent = nullptr);
+    Scan(HttpGet* parent = nullptr);
     ~Scan();
 
     Q_INVOKABLE void get(QString uuid);
