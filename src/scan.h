@@ -18,7 +18,7 @@ public:
 Q_SIGNALS:
     void error(QString strerror);
     void scanedButWaitConfirm();
-    void scanedAndConfirmed();
+    void scanedAndConfirmed(QString redirect_uri);
 
 protected:
     void finished(QNetworkReply* reply);

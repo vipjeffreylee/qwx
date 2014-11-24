@@ -6,13 +6,13 @@
 UUID::UUID(HttpsGet* parent) 
   : HttpsGet(parent)
 {
-    qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+    //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
     get();
 }
 
 UUID::~UUID() 
 {
-    qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+    //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
 }
 
 void UUID::get() 
@@ -20,26 +20,27 @@ void UUID::get()
     QString url = "https://login.weixin.qq.com/jslogin?appid="         
         "wx782c26e4c19acffb&redirect_uri=https://wx.qq.com/cgi-bin/mmwebwx-bin"    
         "/webwxnewloginpage&fun=new&lang=zh_CN&_=" + QString::number(time(NULL));
-
+    //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << url;
     HttpsGet::get(url);
 }
 
 void UUID::finished(QNetworkReply* reply) 
 {
     QString replyStr(reply->readAll());
-    QString uuid = "";
+    QString uuidStr = "";
+    QString qruuidStr = "window.QRLogin.uuid = \"";
+    int index = -1;
 
-    qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
-    qDebug() << "DEBUG:" << replyStr;
-    QStringList list = replyStr.split(" = ");
-    qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << list.size();
-    foreach (const QString str, list) { 
-        qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << str;
+    //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+    //qDebug() << "DEBUG:" << replyStr;
+    // TODO: window.QRLogin.code = 200; window.QRLogin.uuid = "395bb96e535e47"; 
+    index = replyStr.indexOf(qruuidStr) + qruuidStr.size();
+    if (index == -1) {
+        qWarning() << "ERROR:" << __PRETTY_FUNCTION__ << "uuid not found!";
+        emit uuidChanged(uuidStr);
+        return;
     }
-    if (list.size() == 3) {
-        // TODO: list[2] often is like "9910cd52f8874e"; so it needs to remove 
-        // the first one character " and last two ";
-        uuid = list[2].mid(1, list[2].size() - 3);
-        emit uuidChanged(uuid);
-    }
+    uuidStr = replyStr.mid(index, replyStr.size() - index - QString("\";").size());
+    //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << uuidStr;
+    emit uuidChanged(uuidStr);
 }

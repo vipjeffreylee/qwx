@@ -7,7 +7,7 @@ import cn.com.isoft.qwx 1.0
 
 ApplicationWindow {
     id: loginWindow
-    width: 310; height: 500
+    width: 500; height: 500
 
     property string uuid: ""
 
@@ -36,7 +36,7 @@ ApplicationWindow {
             console.log("DEBUG: scaned but waitting for confirm")
         }
         onScanedAndConfirmed: {
-            console.log("DEBUG: scaned and confirmed")
+            console.log("DEBUG:", redirect_uri)
             scanTimer.stop()
         }
     }
