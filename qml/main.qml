@@ -33,11 +33,13 @@ ApplicationWindow {
             console.log("ERROR:", strerror)
         }
         onScanedButWaitConfirm: {
-            console.log("DEBUG: scaned but waitting for confirm")
+            console.log("DEBUG: scaned but waitting for confirm ...")
         }
         onScanedAndConfirmed: {
-            console.log("DEBUG:", redirect_uri)
+            console.log("DEBUG: confirmed")
             scanTimer.stop()
+            cookieObj.get(redirect_uri)
+            contactObj.get()
         }
     }
 
@@ -46,9 +48,14 @@ ApplicationWindow {
     Timer {
         id: scanTimer
         interval: 16000; running: false; repeat: true
-        onTriggered: {
-            console.log("DEBUG: onTriggered")
-            scanQRcode()
-        }
+        onTriggered: { scanQRcode() }
+    }
+
+    Cookie {
+        id: cookieObj
+    }
+
+    Contact {
+        id: contactObj
     }
 }

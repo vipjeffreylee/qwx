@@ -7,6 +7,8 @@
 #include "qtsingleapplication/QtSingleApplication"
 #include "uuid.h"
 #include "scan.h"
+#include "cookie.h"
+#include "contact.h"
 
 int main(int argc, char* argv[]) 
 {                                                                        
@@ -17,6 +19,8 @@ int main(int argc, char* argv[])
 
     qmlRegisterType<UUID>("cn.com.isoft.qwx", 1, 0, "UUID");
     qmlRegisterType<Scan>("cn.com.isoft.qwx", 1, 0, "Scan");
+    qmlRegisterType<Cookie>("cn.com.isoft.qwx", 1, 0, "Cookie");
+    qmlRegisterType<Contact>("cn.com.isoft.qwx", 1, 0, "Contact");
 
     QQmlApplicationEngine engine(QUrl("qrc:/qml/main.qml")); 
     QObject* topLevel = engine.rootObjects().value(0);

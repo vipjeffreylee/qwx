@@ -4,7 +4,9 @@ HEADERS += \
     $$PWD/qtsingleapplication/qtlocalpeer.h \
     $$PWD/httpsget.h    \
     $$PWD/uuid.h    \
-    $$PWD/scan.h
+    $$PWD/scan.h    \
+    $$PWD/cookie.h  \
+    $$PWD/contact.h
 
 SOURCES += \
     $$PWD/main.cpp  \
@@ -12,5 +14,7 @@ SOURCES += \
     $$PWD/qtsingleapplication/qtlocalpeer.cpp   \
     $$PWD/httpsget.cpp  \
     $$PWD/uuid.cpp  \
-    $$PWD/scan.cpp
+    $$PWD/scan.cpp  \
+    $$PWD/cookie.cpp    \
+    $$PWD/contact.cpp
 
