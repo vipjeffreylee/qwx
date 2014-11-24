@@ -5,12 +5,12 @@
 HttpPost::HttpPost(QObject* parent) 
   : QObject(parent)
 {
-    qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+    //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
 }
 
 HttpPost::~HttpPost() 
 {
-    qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+    //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
 }
 
 void HttpPost::post(QString url, QString str) 

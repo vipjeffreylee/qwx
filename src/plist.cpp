@@ -1,5 +1,6 @@
 // Copyright (C) 2014 Leslie Zhai <xiang.zhai@i-soft.com.cn>
 
+#include <QFile>
 #include <QJsonDocument>                                                           
 #include <QJsonObject>                                                             
 #include <QJsonArray>
@@ -35,12 +36,17 @@ void Plist::finished(QNetworkReply* reply)
 {
     QString replyStr = QString(reply->readAll());
     //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
-    qDebug() << "DEBUG:" << replyStr;
+    //qDebug() << "DEBUG:" << replyStr;
+    QFile file("plist.txt");
+    file.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out(&file);
+    out << replyStr;
     QJsonDocument doc = QJsonDocument::fromJson(replyStr.toUtf8());
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << doc.isObject();
     QJsonObject obj = doc.object();
-    QJsonArray arr = obj["MemberList"].toArray();
+    QJsonArray arr = obj["ModContactList"].toArray();
     foreach (const QJsonValue & val, arr) {
-        qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << val.toString();
+        QJsonObject user = val.toObject();
+        qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << user["NickName"].toString();
     }
 }
