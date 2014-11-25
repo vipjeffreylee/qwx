@@ -8,11 +8,11 @@ Item {
     id: contactListView
     width: parent.width; height: parent.height
 
-    property var plistObj
+    property var modContactObj
 
     ListView {
         id: modContactListView
-        model: contactListView.plistObj.modContactList
+        model: contactListView.modContactObj.modContactList
         anchors.fill: parent
 
         delegate: Item {

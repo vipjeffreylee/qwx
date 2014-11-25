@@ -5,6 +5,7 @@
 
 #include "httppost.h"
 
+// Second Request, indeed I am not sure weixin still use it ;P
 class SecReq : public HttpPost 
 {
     Q_OBJECT
@@ -17,7 +18,7 @@ public:
     Q_INVOKABLE void post(QString uuid);
 
 protected:
-    void finished(QNetworkReply*);
+    void finished(QNetworkReply* reply);
 };
 
 #endif // SEC_REQ_H

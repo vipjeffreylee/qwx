@@ -10,7 +10,7 @@
 #include "cookie.h"
 #include "sec_req.h"
 #include "init.h"
-#include "plist.h"
+#include "modcontact.h"
 #include "contact.h"
 
 int main(int argc, char* argv[]) 
@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
     qmlRegisterType<Cookie>("cn.com.isoft.qwx", 1, 0, "Cookie");
     qmlRegisterType<SecReq>("cn.com.isoft.qwx", 1, 0, "SecReq");
     qmlRegisterType<Init>("cn.com.isoft.qwx", 1, 0, "Init");
-    qmlRegisterType<Plist>("cn.com.isoft.qwx", 1, 0, "Plist");
+    qmlRegisterType<ModContact>("cn.com.isoft.qwx", 1, 0, "ModContact");
     qmlRegisterType<Contact>("cn.com.isoft.qwx", 1, 0, "Contact");
 
     QQmlApplicationEngine engine(QUrl("qrc:/qml/main.qml")); 

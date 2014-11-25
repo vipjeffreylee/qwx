@@ -5,12 +5,16 @@
 HttpGet::HttpGet(QObject* parent) 
   : QObject(parent)
 {
-    //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+#if QWX_DEBUG
+    qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+#endif
 }
 
 HttpGet::~HttpGet() 
 {
-    //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+#if QWX_DEBUG
+    qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+#endif
 }
 
 void HttpGet::get(QString url) 
@@ -34,5 +38,7 @@ void HttpGet::m_finished(QNetworkReply* reply)
 void HttpGet::m_sslErrors(QNetworkReply* reply, const QList<QSslError> & errors) 
 {
     reply->ignoreSslErrors(errors);
+#if QWX_DEBUG
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << reply << errors;
+#endif
 }

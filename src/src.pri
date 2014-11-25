@@ -9,7 +9,7 @@ HEADERS += \
     $$PWD/httppost.h   \
     $$PWD/sec_req.h \
     $$PWD/init.h    \
-    $$PWD/plist.h   \
+    $$PWD/modcontact.h   \
     $$PWD/contact.h \
     $$PWD/userobject.h
 
@@ -24,6 +24,6 @@ SOURCES += \
     $$PWD/httppost.cpp \
     $$PWD/sec_req.cpp   \
     $$PWD/init.cpp  \
-    $$PWD/plist.cpp \
+    $$PWD/modcontact.cpp \
     $$PWD/contact.cpp
 

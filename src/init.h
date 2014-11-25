@@ -17,7 +17,7 @@ public:
     Q_INVOKABLE void post(QString uin, QString sid, QString skey);
 
 protected:
-    void finished(QNetworkReply*);
+    void finished(QNetworkReply* reply);
 };
 
 #endif // INIT_H

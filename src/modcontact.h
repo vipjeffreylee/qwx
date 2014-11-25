@@ -1,19 +1,19 @@
 // Copyright (C) 2014 Leslie Zhai <xiang.zhai@i-soft.com.cn>
 
-#ifndef PLIST_H
-#define PLIST_H
+#ifndef MOD_CONTACT_H
+#define MOD_CONTACT_H
 
 #include "httppost.h"
 
-class Plist : public HttpPost 
+class ModContact : public HttpPost 
 {
     Q_OBJECT
 
     Q_PROPERTY(QList<QObject*> modContactList READ modContactList NOTIFY modContactListChanged)
 
 public:
-    Plist(HttpPost* parent = nullptr);
-    ~Plist();
+    ModContact(HttpPost* parent = nullptr);
+    ~ModContact();
 
     QList<QObject*> modContactList() const;
 
@@ -29,4 +29,4 @@ private:
     QList<QObject*> m_modContactList;
 };
 
-#endif // PLIST_H
+#endif // MOD_CONTACT_H

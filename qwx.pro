@@ -23,6 +23,10 @@ OTHER_FILES += \
 RESOURCES += \
     resources.qrc
 
+!isEmpty(QWX_DEBUG) {
+    DEFINES += QWX_DEBUG
+}
+
 unix {
     #VARIABLES
     isEmpty(PREFIX) {

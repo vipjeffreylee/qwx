@@ -5,19 +5,25 @@
 Scan::Scan(HttpGet* parent) 
   : HttpGet(parent)
 {
+#if QWX_DEBUG
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+#endif
 }
 
 Scan::~Scan() 
 {
+#if QWX_DEBUG
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+#endif
 }
 
 void Scan::get(QString uuid) 
 {
     QString url = "https://login.weixin.qq.com/cgi-bin/mmwebwx-bin/login?uuid=" 
         + uuid + "&tip=0&_=" + QString::number(time(NULL));
-    //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << url;
+#if QWX_DEBUG
+    qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << url;
+#endif
     HttpGet::get(url);
 }
 
@@ -28,10 +34,12 @@ void Scan::finished(QNetworkReply* reply)
     QString redirect_uriStr = "";
     int index = -1;
 
+#if QWX_DEBUG
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
     qDebug() << "DEBUG:" << replyStr;
+#endif
     if (replyStr == "window.code=408;") {
-        emit error(replyStr);
+        emit error("timeout");
         return;
     }
     if (replyStr == "window.code=201;") {
@@ -47,7 +55,9 @@ void Scan::finished(QNetworkReply* reply)
             return;
         }
         redirect_uriStr = replyStr.mid(index, replyStr.size() - index - 2);
+#if QWX_DEBUG
         qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << redirect_uriStr;
+#endif
         emit scanedAndConfirmed(redirect_uriStr);
         return; 
     }

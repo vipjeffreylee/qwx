@@ -16,6 +16,7 @@ public:
     Q_INVOKABLE void get();
 
 Q_SIGNALS:
+    void error();
     void uuidChanged(QString uuid);
 
 protected:

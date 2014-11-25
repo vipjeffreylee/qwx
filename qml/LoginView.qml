@@ -12,10 +12,13 @@ Item {
 
     UUID {
         id: uuidObj
+        onError: {
+            console.log("ERROR: fail to get uuid!")
+        }
         onUuidChanged: {
             loginView.uuid = uuid
-            qrcodeImage.source = "https://login.weixin.qq.com/qrcode/" + uuid + 
-            "?t=webwx"
+            qrcodeImage.source = "https://login.weixin.qq.com/qrcode/" + uuid + "?t=webwx"
+            qrcodeImage.visible = true                     
             scanQRcode()
             scanTimer.start()
         }
@@ -23,6 +26,7 @@ Item {
 
     Image {
         id: qrcodeImage
+        visible: false
     }
 
     Scan {
@@ -53,11 +57,11 @@ Item {
         id: cookieObj
         onInfoChanged: {
             initObj.post(uin, sid, skey)
-            plistObj.post(uin, sid)
+            modContactObj.post(uin, sid)
             contactObj.post()
             stackView.clear()
             stackView.push({item: Qt.resolvedUrl("ContactListView.qml"), 
-                properties: {plistObj: plistObj}})
+                properties: {modContactObj: modContactObj}})
         }
     }
 
@@ -69,8 +73,8 @@ Item {
         id: initObj
     }
 
-    Plist {
-        id: plistObj
+    ModContact {
+        id: modContactObj
     }
 
     Contact {

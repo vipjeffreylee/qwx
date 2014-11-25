@@ -6,12 +6,16 @@
 Contact::Contact(HttpPost* parent) 
   : HttpPost(parent)
 {
+#if QWX_DEBUG
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+#endif
 }
 
 Contact::~Contact() 
 {
+#if QWX_DEBUG
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+#endif
 }
 
 void Contact::post() 
@@ -25,6 +29,8 @@ void Contact::post()
 void Contact::finished(QNetworkReply* reply) 
 {
     QString replyStr(reply->readAll());
+#if QWX_DEBUG
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
     qDebug() << "DEBUG:" << replyStr;
+#endif
 }
