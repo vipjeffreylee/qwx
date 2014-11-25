@@ -3,17 +3,17 @@
 #ifndef CONTACT_H
 #define CONTACT_H
 
-#include "httpget.h"
+#include "httppost.h"
 
-class Contact : public HttpGet 
+class Contact : public HttpPost 
 {
     Q_OBJECT
 
 public:
-    Contact(HttpGet* parent = nullptr);
+    Contact(HttpPost* parent = nullptr);
     ~Contact();
 
-    Q_INVOKABLE void get();
+    Q_INVOKABLE void post();
 
 Q_SIGNALS:
     void contactChanged();

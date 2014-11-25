@@ -3,8 +3,8 @@
 #include "contact.h"
 #include "globaldeclarations.h"
 
-Contact::Contact(HttpGet* parent) 
-  : HttpGet(parent)
+Contact::Contact(HttpPost* parent) 
+  : HttpPost(parent)
 {
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
 }
@@ -14,12 +14,12 @@ Contact::~Contact()
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
 }
 
-void Contact::get() 
+void Contact::post() 
 {
     QString url = "https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxgetcontact?r=" + 
         QString::number(time(NULL));
-    qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << url;
-    HttpGet::get(url);
+    QString json = "{}";
+    HttpPost::post(url, json);
 }
 
 void Contact::finished(QNetworkReply* reply) 

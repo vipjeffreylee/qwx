@@ -55,6 +55,7 @@ ApplicationWindow {
         onInfoChanged: {
             initObj.post(uin, sid, skey)
             plistObj.post(uin, sid)
+            contactObj.post()
         }
     }
 
