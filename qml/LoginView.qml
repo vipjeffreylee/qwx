@@ -62,11 +62,11 @@ Item {
             //-----------------------------------------------------------------
             // TODO: only for test
             statusNotifyObj.post(uin, sid, skey, "sirtoozee")
-            sendMsgObj.post(uin, sid, skey, "sirtoozee", "ManateeLazyCat", "hello lazycat, send from qwx ;)")
             //-----------------------------------------------------------------
             stackView.clear()
             stackView.push({item: Qt.resolvedUrl("ContactListView.qml"), 
-                properties: {modContactObj: modContactObj}})
+                            properties: {modContactObj: modContactObj, 
+                                         uin: uin, sid: sid, skey: skey}})
         }
     }
 
@@ -88,9 +88,5 @@ Item {
 
     StatusNotify {
         id: statusNotifyObj
-    }
-
-    SendMsg {
-        id: sendMsgObj
     }
 }

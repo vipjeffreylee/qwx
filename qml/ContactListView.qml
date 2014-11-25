@@ -9,6 +9,13 @@ Item {
     width: parent.width; height: parent.height
 
     property var modContactObj
+    property string uin
+    property string sid
+    property string skey
+
+    SendMsg {
+        id: sendMsgObj
+    }
 
     ListView {
         id: modContactListView
@@ -18,7 +25,7 @@ Item {
         delegate: Item {
             height: 30
             
-            /*
+            /* FIXME: ./src/modcontact.cpp it ONLY works in web browser ...
             Image {
                 source: modelData.HeadImgUrl
             }
@@ -26,6 +33,20 @@ Item {
 
             Text {
                 text: modelData.NickName
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        console.log("DEBUG: only for test sending msg")
+                        // TODO: it needs to get current login user account ;)
+                        sendMsgObj.post(contactListView.uin, 
+                                        contactListView.sid, 
+                                        contactListView.skey, 
+                                        "sirtoozee", // TODO: only for test 
+                                        modelData.UserName, 
+                                        "hello, " + modelData.NickName + " 消息来自qwx ;)")
+                    }
+                }
             }
         }
     }
