@@ -9,15 +9,24 @@ class Plist : public HttpPost
 {
     Q_OBJECT
 
+    Q_PROPERTY(QList<QObject*> modContactList READ modContactList NOTIFY modContactListChanged)
+
 public:
     Plist(HttpPost* parent = nullptr);
     ~Plist();
 
-public:
+    QList<QObject*> modContactList() const;
+
     Q_INVOKABLE void post(QString uin, QString sid);
+
+Q_SIGNALS:
+    void modContactListChanged();
 
 protected:
     void finished(QNetworkReply* reply);
+
+private:
+    QList<QObject*> m_modContactList;
 };
 
 #endif // PLIST_H

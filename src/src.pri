@@ -10,7 +10,8 @@ HEADERS += \
     $$PWD/sec_req.h \
     $$PWD/init.h    \
     $$PWD/plist.h   \
-    $$PWD/contact.h
+    $$PWD/contact.h \
+    $$PWD/userobject.h
 
 SOURCES += \
     $$PWD/main.cpp  \

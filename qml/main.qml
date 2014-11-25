@@ -68,6 +68,8 @@ ApplicationWindow {
 
     Plist {
         id: plistObj
+        onModContactListChanged: {
+        }
     }
 
     Contact {

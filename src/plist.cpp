@@ -6,6 +6,7 @@
 #include <QJsonArray>
 
 #include "plist.h"
+#include "userobject.h"
 
 Plist::Plist(HttpPost* parent) 
   : HttpPost(parent)
@@ -32,21 +33,25 @@ void Plist::post(QString uin, QString sid)
     HttpPost::post(url, json);
 }
 
+QList<QObject*> Plist::modContactList() const { return m_modContactList; }
+
 void Plist::finished(QNetworkReply* reply) 
 {
     QString replyStr = QString(reply->readAll());
-    //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
-    //qDebug() << "DEBUG:" << replyStr;
+    // TODO: reply json string is too long to print out for DEBUG
     QFile file("plist.txt");
-    file.open(QIODevice::WriteOnly | QIODevice::Text);
-    QTextStream out(&file);
-    out << replyStr;
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QTextStream out(&file);
+        out << replyStr;
+    }
     QJsonDocument doc = QJsonDocument::fromJson(replyStr.toUtf8());
-    qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << doc.isObject();
     QJsonObject obj = doc.object();
     QJsonArray arr = obj["ModContactList"].toArray();
     foreach (const QJsonValue & val, arr) {
         QJsonObject user = val.toObject();
         qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << user["NickName"].toString();
+        m_modContactList.append(new UserObject(user["UserName"].toString(), 
+            user["NickName"].toString(), user["HeadImgUrl"].toString()));
     }
+    emit modContactListChanged();
 }
