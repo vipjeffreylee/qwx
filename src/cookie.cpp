@@ -29,8 +29,10 @@ void Cookie::finished(QNetworkReply* reply)
     QString replyStr(reply->readAll());
     QDomDocument doc;
 
-    //qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
-    //qDebug() << "DEBUG:" << replyStr;
+    qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
+    qDebug() << "DEBUG:" << replyStr;
+    // FIXME: my mother`s weixin accout is not able to get cookie!? but my wife
+    // and I are OK ;)
     if (doc.setContent(replyStr) == false) {
         qWarning() << "ERROR:" << __PRETTY_FUNCTION__ << "fail to parse";
         return;

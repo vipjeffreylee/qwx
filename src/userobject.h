@@ -10,9 +10,9 @@ class UserObject : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(QString UserName READ UserName WRITE setUserName)
-    Q_PROPERTY(QString NickName READ NickName WRITE setNickName)
-    Q_PROPERTY(QString HeadImgUrl READ HeadImgUrl WRITE setHeadImgUrl)
+    Q_PROPERTY(QString UserName READ UserName WRITE setUserName NOTIFY UserNameChanged)
+    Q_PROPERTY(QString NickName READ NickName WRITE setNickName NOTIFY NickNameChanged)
+    Q_PROPERTY(QString HeadImgUrl READ HeadImgUrl WRITE setHeadImgUrl NOTIFY HeadImgUrlChanged)
 
 public:
     UserObject(const QString UserName, 
@@ -25,13 +25,21 @@ public:
     }
 
     QString UserName() const { return m_UserName; }
-    void setUserName(const QString & UserName) { m_UserName = UserName; }
+    void setUserName(const QString & UserName) 
+    { m_UserName = UserName; emit UserNameChanged(); }
 
     QString NickName() const { return m_NickName; }
-    void setNickName(const QString & NickName) { m_NickName = NickName; }
+    void setNickName(const QString & NickName) 
+    { m_NickName = NickName; emit NickNameChanged(); }
 
     QString HeadImgUrl() const { return m_HeadImgUrl; }
-    void setHeadImgUrl(const QString & HeadImgUrl) { m_HeadImgUrl = HeadImgUrl; }
+    void setHeadImgUrl(const QString & HeadImgUrl) 
+    { m_HeadImgUrl = HeadImgUrl; emit HeadImgUrlChanged(); }
+
+Q_SIGNALS:
+    void UserNameChanged();
+    void NickNameChanged();
+    void HeadImgUrlChanged();
 
 private:
     QString m_UserName;

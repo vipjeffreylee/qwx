@@ -16,7 +16,9 @@ CODECFORSRC = UTF-8
 include(src/src.pri)
 
 OTHER_FILES += \
-    qml/main.qml
+    qml/main.qml    \
+    qml/LoginView.qml   \
+    qml/ContactListView.qml
 
 RESOURCES += \
     resources.qrc

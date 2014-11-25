@@ -1,5 +1,7 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource prefix="/">
   <file>qml/main.qml</file>
+  <file>qml/LoginView.qml</file>
+  <file>qml/ContactListView.qml</file>
 </qresource>
 </RCC>
