@@ -1,6 +1,7 @@
 // Copyright (C) 2014 Leslie Zhai <xiang.zhai@i-soft.com.cn>
 
 #include "scan.h"
+#include "globaldeclarations.h"
 
 Scan::Scan(HttpGet* parent) 
   : HttpGet(parent)
@@ -19,8 +20,8 @@ Scan::~Scan()
 
 void Scan::get(QString uuid) 
 {
-    QString url = "https://login.weixin.qq.com/cgi-bin/mmwebwx-bin/login?uuid=" 
-        + uuid + "&tip=0&_=" + QString::number(time(NULL));
+    QString url = LOGIN_SERVER_HOST + WX_CGI_PATH + "login?uuid=" + uuid + 
+        "&tip=0&_=" + QString::number(time(NULL));
 #if QWX_DEBUG
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << url;
 #endif

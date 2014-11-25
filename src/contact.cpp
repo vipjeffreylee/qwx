@@ -20,8 +20,11 @@ Contact::~Contact()
 
 void Contact::post() 
 {
-    QString url = "https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxgetcontact?r=" + 
+    QString url = WX_SERVER_HOST + WX_CGI_PATH + "webwxgetcontact?r=" + 
         QString::number(time(NULL));
+#if QWX_DEBUG
+    qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << url;
+#endif
     QString json = "{}";
     HttpPost::post(url, json);
 }

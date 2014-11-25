@@ -21,9 +21,9 @@ UUID::~UUID()
 
 void UUID::get() 
 {
-    QString url = "https://login.weixin.qq.com/jslogin?appid="         
-        "wx782c26e4c19acffb&redirect_uri=https://wx.qq.com/cgi-bin/mmwebwx-bin"    
-        "/webwxnewloginpage&fun=new&lang=zh_CN&_=" + QString::number(time(NULL));
+    QString url = LOGIN_SERVER_HOST + "/jslogin?appid=wx782c26e4c19acffb"
+        "&redirect_uri=" + WX_SERVER_HOST + WX_CGI_PATH + "webwxnewloginpage"
+        "&fun=new&lang=zh_CN&_=" + QString::number(time(NULL));
 #if QWX_DEBUG
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << url;
 #endif

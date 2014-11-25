@@ -7,7 +7,7 @@ qwx
 ## 编译、运行
 
 ```
-qmake
+qmake QWX_DEBUG=ON
 make
 ./qwx
 ```

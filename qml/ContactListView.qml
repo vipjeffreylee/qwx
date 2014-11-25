@@ -18,6 +18,12 @@ Item {
         delegate: Item {
             height: 30
             
+            /*
+            Image {
+                source: modelData.HeadImgUrl
+            }
+            */
+
             Text {
                 text: modelData.NickName
             }

@@ -9,6 +9,7 @@
 
 #include "modcontact.h"
 #include "userobject.h"
+#include "globaldeclarations.h"
 
 ModContact::ModContact(HttpPost* parent) 
   : HttpPost(parent)
@@ -28,8 +29,7 @@ ModContact::~ModContact()
 void ModContact::post(QString uin, QString sid) 
 {
     QString ts = QString::number(time(NULL));
-    QString url = "https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxsync?sid=" + sid 
-        + "&r=" + ts;
+    QString url = WX_SERVER_HOST + WX_CGI_PATH + "webwxsync?sid=" + sid + "&r=" + ts;
 #if QWX_DEBUG
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << url;
 #endif
@@ -56,12 +56,15 @@ void ModContact::finished(QNetworkReply* reply)
     }
 #endif
     QJsonDocument doc = QJsonDocument::fromJson(replyStr.toUtf8());
+    if (!doc.isObject()) { emit error(); return; }
     QJsonObject obj = doc.object();
     QJsonArray arr = obj["ModContactList"].toArray();
     foreach (const QJsonValue & val, arr) {
         QJsonObject user = val.toObject();
-        m_modContactList.append(new UserObject(user["UserName"].toString(), 
-            user["NickName"].toString(), user["HeadImgUrl"].toString()));
+        m_modContactList.append(new UserObject(
+            user["UserName"].toString(), 
+            user["NickName"].toString(), 
+            WX_SERVER_HOST + user["HeadImgUrl"].toString()));
     }
     emit modContactListChanged();
 }

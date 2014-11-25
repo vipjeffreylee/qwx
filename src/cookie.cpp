@@ -4,7 +4,6 @@
 #include <QDomElement>
 
 #include "cookie.h"
-#include "globaldeclarations.h"
 
 Cookie::Cookie(HttpGet* parent) 
   : HttpGet(parent)

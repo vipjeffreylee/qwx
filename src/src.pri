@@ -11,7 +11,9 @@ HEADERS += \
     $$PWD/init.h    \
     $$PWD/modcontact.h   \
     $$PWD/contact.h \
-    $$PWD/userobject.h
+    $$PWD/userobject.h  \
+    $$PWD/statusnotify.h    \
+    $$PWD/send_msg.h
 
 SOURCES += \
     $$PWD/main.cpp  \
@@ -25,5 +27,7 @@ SOURCES += \
     $$PWD/sec_req.cpp   \
     $$PWD/init.cpp  \
     $$PWD/modcontact.cpp \
-    $$PWD/contact.cpp
+    $$PWD/contact.cpp   \
+    $$PWD/statusnotify.cpp  \
+    $$PWD/send_msg.cpp
 

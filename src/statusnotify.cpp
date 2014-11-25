@@ -1,9 +1,9 @@
 // Copyright (C) 2014 Leslie Zhai <xiang.zhai@i-soft.com.cn>
 
-#include "init.h"
+#include "statusnotify.h"
 #include "globaldeclarations.h"
 
-Init::Init(HttpPost* parent) 
+StatusNotify::StatusNotify(HttpPost* parent) 
   : HttpPost(parent)
 {
 #if QWX_DEBUG
@@ -11,30 +11,32 @@ Init::Init(HttpPost* parent)
 #endif
 }
 
-Init::~Init() 
+StatusNotify::~StatusNotify() 
 {
 #if QWX_DEBUG
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__;
 #endif
 }
 
-void Init::post(QString uin, QString sid, QString skey) 
+void StatusNotify::post(QString uin, QString sid, QString skey, QString userName) 
 {
+    QString ts = QString::number(time(NULL));
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << "why webwx NOT use skey" << skey;
-    QString url = "https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxinit?r=" + 
-        QString::number(time(NULL));
+    QString url = WX_SERVER_HOST + WX_CGI_PATH + "webwxstatusnotify?r=" + ts;
 #if QWX_DEBUG
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << url;
 #endif
-    QString json = "{\"BaseRequest\":{\"Uin\":\"" + uin + "\",\"Sid\":\"" + 
-        sid + "\",\"Skey\":\"\",\"DeviceID\":\"" + DEVICE_ID + "\"}}";
+    QString json = "{\"BaseRequest\":{\"Uin\":" + uin + ",\"Sid\":\"" + sid 
+        + "\",\"Skey\":\"\",\"DeviceID\":\"" + DEVICE_ID + "\"},\"Code\":3,"
+        "\"FromUserName\":\"" + userName + "\",\"ToUserName\":\"" + userName 
+        + "\",\"ClientMsgId\":\"" + ts + "\"}";
 #if QWX_DEBUG
     qDebug() << "DEBUG:" << __PRETTY_FUNCTION__ << json;
 #endif
     HttpPost::post(url, json);
 }
 
-void Init::finished(QNetworkReply* reply) 
+void StatusNotify::finished(QNetworkReply* reply) 
 {
     QString replyStr = QString(reply->readAll());
 #if QWX_DEBUG
